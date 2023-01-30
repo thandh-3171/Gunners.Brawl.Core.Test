@@ -58,3 +58,15 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/com.gunners.core.manage
+Assets/TutorialInfo
+Assets/UniversalRenderPipelineGlobalSettings.asset
+Assets/UniversalRenderPipelineGlobalSettings.asset.meta
+Assets/com.gunners.core.manage.meta
+Assets/Settings
+Assets/Settings.meta
+Assets/TutorialInfo.meta
+Assets/Readme.asset
+Assets/Readme.asset.meta
+Packages
+ProjectSettings
