@@ -8,23 +8,24 @@ public class ButtonTest : ButtonTemplate
 {
     [SerializeField] Text title;
 
-    public override IEnumerator<float> Activate()
+    public override void Activate()
     {
-        yield return Timing.WaitUntilTrue(() => this.initialized);
-        Timing.RunCoroutine(base.Activate());
-        Debug.Log("Activate");
+        if (!initialized) return;
+        base.Activate();
+        Debug.Log("Activate " + title.text);
     }
 
-    public override IEnumerator<float> OnClick()
+    public override void OnClick()
     {
-        yield return Timing.WaitUntilTrue(() => this.initialized);
-        Timing.RunCoroutine(base.OnClick());
-        Debug.Log("Click");
+        if (!initialized) return;
+        base.OnClick();
+        Debug.Log("OnClick " + title.text);
     }
 
-    public override IEnumerator<float> OnPostAdded_SetupUI<T>(T data, GameObject entity)
+    public override void OnPostAdded_SetupUI<T>(T data, GameObject entity)
     {
-        yield return Timing.WaitUntilTrue(() => this.initialized);
+        if (!initialized) return;
+        base.OnPostAdded_SetupUI<T>(data, entity);
         FakeData convert = data as FakeData;
         this.title.text = convert.title;
     }
