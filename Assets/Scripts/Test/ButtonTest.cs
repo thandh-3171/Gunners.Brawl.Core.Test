@@ -7,7 +7,7 @@ using MEC;
 public class ButtonTest : ButtonTemplate
 {
     [SerializeField] Text title;
-
+        
     public override void Activate()
     {
         if (!initialized) return;

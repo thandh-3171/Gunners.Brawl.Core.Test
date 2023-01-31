@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WeAreProStars.Core.Manage;
 using MEC;
+using WeAreProStars.Core.Manage.UI.Template;
 
 public class ScrollViewManagerTest : MonoBehaviour
 {
@@ -12,17 +13,19 @@ public class ScrollViewManagerTest : MonoBehaviour
         new FakeData("DEF")
     };
 
+    [SerializeField] ScrollViewTemplate content;
+
     private void Start()
     {
         Timing.RunCoroutine(_Start());
     }
 
     private IEnumerator<float> _Start()
-    {
-        var content = GetComponent<UIContentAbstract>();
+    {        
         if (content == null) yield break;
+        yield return Timing.WaitUntilTrue(() => content.Lived());
         yield return Timing.WaitUntilTrue(() => content.initialized);
-        datas.ForEach(data => content.AddItem<FakeData>(data));
+        datas.ForEach(data => content.AddQueueItem<FakeData>(data));
     }
 }
 
