@@ -21,10 +21,10 @@ public class ScrollViewManagerTest : MonoBehaviour
     }
 
     private IEnumerator<float> _Start()
-    {        
+    {
         if (content == null) yield break;
         yield return Timing.WaitUntilTrue(() => content.Lived());
-        yield return Timing.WaitUntilTrue(() => content.initialized);
+        yield return Timing.WaitUntilTrue(() => !content.IsBusy() && content.initialized);
         datas.ForEach(data => content.AddQueueItem<FakeData>(data));
     }
 }
