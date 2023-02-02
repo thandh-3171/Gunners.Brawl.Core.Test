@@ -12,7 +12,6 @@ public class ButtonTest : ButtonTemplate
     {
         if (!initialized) return;
         base.Activate();
-        Debug.Log("Activate " + title.text);
     }
 
     public override void OnClick()
