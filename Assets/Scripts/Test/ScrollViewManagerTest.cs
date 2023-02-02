@@ -13,19 +13,29 @@ public class ScrollViewManagerTest : MonoBehaviour
         new FakeData("DEF")
     };
 
-    [SerializeField] ScrollViewTemplate content;
+    [SerializeField] ScrollViewTemplate scroll;
+    [SerializeField] ScrollViewTemplate dropdown;
 
     private void Start()
     {
-        Timing.RunCoroutine(_Start());
+        if (scroll.gameObject.activeSelf) Timing.RunCoroutine(_SpreadScroll());
+        if (dropdown.gameObject.activeSelf) Timing.RunCoroutine(_SpreadDropdown());
     }
 
-    private IEnumerator<float> _Start()
+    private IEnumerator<float> _SpreadScroll()
     {
-        if (content == null) yield break;
-        yield return Timing.WaitUntilTrue(() => content.Lived());
-        yield return Timing.WaitUntilTrue(() => !content.IsBusy() && content.initialized);
-        datas.ForEach(data => content.AddQueueItem<FakeData>(data));
+        if (scroll == null) yield break;
+        yield return Timing.WaitUntilTrue(() => scroll.Lived());
+        yield return Timing.WaitUntilTrue(() => !scroll.IsBusy() && scroll.initialized);
+        datas.ForEach(data => scroll.AddQueueItem<FakeData>(data));
+    }
+
+    private IEnumerator<float> _SpreadDropdown()
+    {
+        if (dropdown == null) yield break;
+        yield return Timing.WaitUntilTrue(() => dropdown.Lived());
+        yield return Timing.WaitUntilTrue(() => !dropdown.IsBusy() && dropdown.initialized);
+        datas.ForEach(data => dropdown.AddQueueItem<FakeData>(data));
     }
 }
 
