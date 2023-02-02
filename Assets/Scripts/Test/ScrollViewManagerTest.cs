@@ -14,7 +14,7 @@ public class ScrollViewManagerTest : MonoBehaviour
     };
 
     [SerializeField] ScrollViewTemplate scroll;
-    [SerializeField] ScrollViewTemplate dropdown;
+    [SerializeField] DropdownTemplate dropdown;
 
     private void Start()
     {
